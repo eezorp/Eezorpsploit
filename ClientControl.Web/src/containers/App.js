@@ -8,6 +8,13 @@ import ShellcodeView from '../views/ShellcodeView';
 import ComputerLogo from 'material-ui-icons/Computer'
 import Code from 'material-ui-icons/Code';
 
+
+const computerimg = require('../resources/computer.svg');
+const codeimg = require('../resources/code.svg');
+
+const clientsView = <ClientsView img={computerimg} />;
+const shellcodeView = <ShellcodeView img={codeimg} />;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -39,13 +46,13 @@ class App extends Component {
       i.isSelected = selected;
     });
 
-    this.setState({selectedItem: name, navItems: navItems});
+    this.setState({ selectedItem: name, navItems: navItems });
   }
   getView = (name) => {
     if (name === "Clients")
-      return <ClientsView />
+      return clientsView;
     if (name === "ShellCode")
-      return <ShellcodeView />
+      return shellcodeView;
 
     return <div />
   }

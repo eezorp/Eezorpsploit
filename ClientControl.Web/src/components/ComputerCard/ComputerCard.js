@@ -14,7 +14,6 @@ import Functions from './Functions';
 import ShellModal from '../ShellModal';
 import ComputerInfoCard from '../ComputerInfoCard';
 
-const img = require('../../resources/computer.svg');
 
 const functions = new Functions();
 const styles = {
@@ -116,7 +115,7 @@ class ComputerCard extends React.Component {
                     </div>
                     <img
                         style={styles.cover}
-                        src={img}
+                        src={this.props.img}
                     />
                 </Card>
             </div>

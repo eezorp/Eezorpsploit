@@ -41,7 +41,7 @@ class ShellcodeView extends Component {
                 <AddShellcodeCard />
                 {
                     this.state.shellcodes.map(s => {
-                        return <ShellcodeCard shellcode={s} onGet={this.getShellCode} />
+                        return <ShellcodeCard img={this.props.img} shellcode={s} onGet={this.getShellCode} />
                     })
                 }
             </Grid>

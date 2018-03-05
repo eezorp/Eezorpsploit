@@ -55,7 +55,7 @@ class ClientView extends Component {
 
     render() {
         let clients = this.state.clients;
-        let cards = clients.map(c => <ComputerCard client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} url={url} />);
+        let cards = clients.map(c => <ComputerCard img={this.props.img} client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} url={url} />);
 
         return (
             <Grid container>

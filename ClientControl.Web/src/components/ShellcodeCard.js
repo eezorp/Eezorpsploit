@@ -16,7 +16,6 @@ import StopIcon from 'material-ui-icons/Stop';
 
 import DeleteIcon from 'material-ui-icons/Delete';
 import InfoIcon from 'material-ui-icons/InfoOutline';
-const svgIco = require('../resources/code.svg');
 
 const styles = {
     card: {
@@ -87,7 +86,7 @@ class ShellcodeCard extends React.Component {
                     </div>
                     <img
                         style={styles.cover}
-                        src={svgIco}
+                        src={this.props.img}
                     />
                 </Card>
             </div>
