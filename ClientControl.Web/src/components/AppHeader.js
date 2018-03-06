@@ -66,7 +66,7 @@ export default class AppHeader extends React.Component {
         let items = this.props.items;
         return (
             <div style={styles.root}>
-                <AppBar position={this.state.setFixed ? "fixed" : "static"} style={{ backgroundColor: Theme.primaryColor, marginBottom: 40 }}>
+                <AppBar position={this.state.setFixed ? "fixed" : "static"} style={{ backgroundColor: Theme.primaryColor, marginBottom: 40, top: 0}}>
                     
                     {this.state.setFixed === false && <Toolbar style={styles.toolbar}>
                         <Grid container>
@@ -79,7 +79,7 @@ export default class AppHeader extends React.Component {
                         </Grid>
                     </Toolbar>}
                     
-                    <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 10 }}>
+                    <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 20 }}>
                         <div style={{ display: 'flex', flex: 1 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
                                 {
@@ -99,7 +99,7 @@ export default class AppHeader extends React.Component {
                 </AppBar>
                 {
                     this.state.setFixed && 
-                    <div style={{width: '1', height: 145}} />
+                    <div style={{width: '1', height: 163}} />
                 }
             </div>
         );
