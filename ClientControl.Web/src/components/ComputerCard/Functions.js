@@ -1,5 +1,7 @@
+import { setShellcode } from '../../api/API';
+
 export default class Functions {
-    getInitialState(){
+    getInitialState() {
         return {
             showModal: false,
             showInfoModal: false
@@ -45,23 +47,8 @@ export default class Functions {
 
     setShellCode(shellcode) {
         let _this = this;
-        let params = {
-            mac: this.props.client.mac,
-            shellcode: shellcode
-        }
 
-        const searchParams = Object.keys(params).map((key) => {
-            return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
-        }).join('&');
-
-
-        fetch(this.props.url + "/clients", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: searchParams
-        })
+        setShellcode(this.props.client.mac, shellcode)
             .then(() => {
                 _this.props.onSet(this.props.client, shellcode);
                 _this.forceUpdate();

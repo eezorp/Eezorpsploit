@@ -29,6 +29,7 @@ const styles = {
     },
     cover: {
         width: 100,
+        height: 140,
         padding: 10,
         marginRight: 10
     },

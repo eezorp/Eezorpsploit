@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import AppHeader from '../components/AppHeader';
 import Grid from 'material-ui/Grid';
 import ComputerCard from '../components/ComputerCard/ComputerCard';
-const url = "http://localhost:8000";
+import Loader from '../components/Loader';
+import theme from '../styles/theme.json';
+import { getClients } from '../api/API';
 var interval_op = undefined;
 
 class ClientView extends Component {
@@ -10,8 +12,9 @@ class ClientView extends Component {
         super(props);
 
         this.state = {
-            clients: []
-        }
+            clients: [],
+            isLoading: false
+        };
 
         this.onAbort = this.onAbort.bind(this);
         this.onSetShellcode = this.onSetShellcode.bind(this);
@@ -19,14 +22,14 @@ class ClientView extends Component {
 
     componentDidMount() {
         let _this = this;
-        fetch(url + "/clients")
-            .then(response => response.json())
+        this.setState({ isLoading: true });
+
+        getClients()
             .then(clients => {
-                _this.setState({ clients: clients });
+                _this.setState({ clients: clients, isLoading: false });
             }).then(() => {
                 interval_op = setInterval(() => {
-                    fetch(url + "/clients")
-                        .then(response => response.json())
+                    getClients()
                         .then(clients => {
                             _this.setState({ clients: clients });
                         })
@@ -55,17 +58,25 @@ class ClientView extends Component {
 
     render() {
         let clients = this.state.clients;
-        let cards = clients.map(c => <ComputerCard img={this.props.img} client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} url={url} />);
+        let cards = clients.map(c => <ComputerCard img={this.props.img} client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} />);
 
         return (
             <Grid container>
-                {cards}
-                {cards}
-                {cards}
-                {cards}
-                {cards}
-                {cards}
-                {cards}
+
+                {this.state.isLoading === true
+                    ?
+                    <Loader />
+                    :
+                    <Grid container>
+                        {cards}
+                        {cards}
+                        {cards}
+                        {cards}
+                        {cards}
+                        {cards}
+                    </Grid>
+                }
+
             </Grid>
         );
     }

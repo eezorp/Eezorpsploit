@@ -40,14 +40,14 @@ export default class AppHeader extends React.Component {
                     <Toolbar style={styles.toolbar}>
                         <Grid container>
                             <Grid item xs={1} />
-                            <Grid item xs={10} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <img src={logo} style={styles.logo}/>
+                            <Grid item xs={10} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                                <img src={logo} style={styles.logo} />
                                 <Typography variant="headline" color="inherit">EezorpSploit v1.2</Typography>
                             </Grid>
                             <Grid item xs={1} />
                         </Grid>
                     </Toolbar>
-                    <Toolbar style={{alignItems: 'flex-end', minHeight: 0, marginTop: 10}}>
+                    <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 10 }}>
                         <div style={{ display: 'flex', flex: 1 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
                                 {
@@ -55,8 +55,8 @@ export default class AppHeader extends React.Component {
                                         i => {
                                             return <Button style={i.isSelected === true ? selectedItemStyle : null} color="inherit" onClick={() => this.props.onNavigate(i.name)}>
                                                 {i.logo}
-                                                <div style={{ marginRight: 5 }} />
-                                                <Typography variant="subheading" color="inherit">{i.name}</Typography>
+                                                {this.props.isMobile !== true && <div style={{ marginRight: 5 }} />}
+                                                {this.props.isMobile !== true && <Typography variant="subheading" color="inherit">{i.name}</Typography>}
                                             </Button>
                                         }
                                     )

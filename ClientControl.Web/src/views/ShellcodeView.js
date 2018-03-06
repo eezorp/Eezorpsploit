@@ -3,9 +3,9 @@ import ComputerCard, { } from '../components/ComputerCard/ComputerCard';
 import { Row, Col } from 'reactstrap';
 import ShellcodeCard from '../components/ShellcodeCard';
 import Grid from 'material-ui/Grid';
+import Loader from '../components/Loader';
 import AddShellcodeCard from '../components/AddShellcodeCard';
-
-const url = "http://localhost:8000/shellcode";
+import { getShellCodes } from '../api/API';
 
 class ShellcodeView extends Component {
 
@@ -13,19 +13,21 @@ class ShellcodeView extends Component {
         super(props);
 
         this.state = {
-            shellcodes: []
-        }
+            shellcodes: [],
+            isLoading: false
+        };
 
         this.getShellCode = this.getShellCode.bind(this);
     }
 
     componentDidMount() {
         let _this = this;
-        fetch(url)
-            .then(response => response.json())
+        this.setState({ isLoading: true });
+        //API
+        getShellCodes()
             .then(shellcodes => {
-                _this.setState({ shellcodes: shellcodes });
-            })
+                _this.setState({ shellcodes: shellcodes, isLoading: false });
+            });
     }
 
     getShellCode(name) {
@@ -36,13 +38,20 @@ class ShellcodeView extends Component {
 
     render() {
         return (
-
             <Grid container>
-                <AddShellcodeCard />
                 {
-                    this.state.shellcodes.map(s => {
-                        return <ShellcodeCard img={this.props.img} shellcode={s} onGet={this.getShellCode} />
-                    })
+                    this.state.isLoading === true
+                        ?
+                        <Loader />
+                        :
+                        <Grid container>
+                            <AddShellcodeCard />
+                            {
+                                this.state.shellcodes.map(s => {
+                                    return <ShellcodeCard img={this.props.img} shellcode={s} onGet={this.getShellCode} />
+                                })
+                            }
+                        </Grid>
                 }
             </Grid>
         )
