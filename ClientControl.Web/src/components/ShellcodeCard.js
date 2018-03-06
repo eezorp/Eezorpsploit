@@ -24,7 +24,8 @@ const styles = {
     cover: {
         height: 100,
         padding: 10,
-        marginRight: 10
+        marginLeft: 10,
+        marginTop: 10
     },
     controls: {
         display: 'flex',
@@ -53,6 +54,11 @@ class ShellcodeCard extends React.Component {
         return (
             <div style={{ margin: 10 }}>
                 <Card style={styles.card}>
+                <img
+                        style={styles.cover}
+                        src={this.props.img}
+                        alt={"Could not load"}
+                    />
                     <div style={styles.details}>
                         <CardContent style={styles.content}>
                             <Typography variant="headline">{code.name}</Typography>
@@ -77,11 +83,7 @@ class ShellcodeCard extends React.Component {
                             </IconButton>
                         </div>
                     </div>
-                    <img
-                        style={styles.cover}
-                        src={this.props.img}
-                        alt={"Could not load"}
-                    />
+                    
                 </Card>
             </div>
         );

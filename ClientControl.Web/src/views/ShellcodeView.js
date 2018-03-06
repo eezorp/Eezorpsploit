@@ -42,7 +42,7 @@ class ShellcodeView extends Component {
                         ?
                         <Loader />
                         :
-                        <Grid container>
+                        <Grid  container>
                             <AddShellcodeCard />
                             {
                                 this.state.shellcodes.map(s => {

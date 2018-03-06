@@ -65,7 +65,7 @@ class ClientView extends Component {
                     ?
                     <Loader />
                     :
-                    <Grid container>
+                    <Grid container >
                         {cards}
                         {cards}
                         {cards}
@@ -74,7 +74,6 @@ class ClientView extends Component {
                         {cards}
                     </Grid>
                 }
-
             </Grid>
         );
     }
