@@ -5,8 +5,9 @@ import Grid from 'material-ui/Grid';
 import ClientsView from '../views/ClientsView';
 import ShellcodeView from '../views/ShellcodeView';
 
-import ComputerLogo from 'material-ui-icons/Computer'
-import Code from 'material-ui-icons/Code';
+import ComputerIcon from 'material-ui-icons/Computer'
+import CodeIcon from 'material-ui-icons/Code';
+import InfoIcon from 'material-ui-icons/InfoOutline';
 
 
 const computerimg = require('../resources/computer.svg');
@@ -23,12 +24,17 @@ class App extends Component {
       navItems: [
         {
           name: "Clients",
-          logo: <ComputerLogo />,
+          logo: <ComputerIcon />,
           isSelected: true
         },
         {
           name: "ShellCode",
-          logo: <Code />,
+          logo: <CodeIcon />,
+          isSelected: false
+        },
+        {
+          name: "About",
+          logo: <InfoIcon/>,
           isSelected: false
         }
       ],
@@ -65,13 +71,13 @@ class App extends Component {
         <AppHeader items={this.state.navItems} onNavigate={this.onNavigate} />
 
         <Grid container>
-          <Grid item xs={2} />
-          <Grid item xs={8}>
+          <Grid item xs={1} />
+          <Grid item xs={10}>
             <Grid container>
               {view}
             </Grid>
           </Grid>
-          <Grid item xs={2} />
+          <Grid item xs={1} />
         </Grid>
       </div>
     );
