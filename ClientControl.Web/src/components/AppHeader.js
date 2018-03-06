@@ -5,6 +5,9 @@ import Typography from 'material-ui/Typography';
 import Theme from '../styles/theme.json';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
+
+
+
 const logo = require('../resources/logo.svg');
 
 const styles = {
@@ -12,7 +15,7 @@ const styles = {
         flexGrow: 1,
     },
     toolbar: {
-        minHeight: 0,
+        minHeight: 50,
         marginTop: 10
     },
     logo: {
@@ -30,14 +33,42 @@ export default class AppHeader extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            setFixed: false
+        }
+
+        this.setFixed = this.setFixed.bind(this);
+    }
+
+    componentDidMount() {
+        let _this = this;
+
+        window.addEventListener('scroll', () => {
+            let supportPageOffset = window.pageXOffset !== undefined;
+            let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+            let scroll = {
+                x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+                y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+            };
+
+            _this.setFixed(scroll.y > 50)
+        }, 200);//ms
+    }
+
+    setFixed(val) {
+        if (val !== this.state.setFixed)
+            this.setState({
+                setFixed: val
+            });
     }
 
     render = () => {
         let items = this.props.items;
         return (
             <div style={styles.root}>
-                <AppBar position="static" style={{ backgroundColor: Theme.primaryColor, marginBottom: 40 }}>
-                    <Toolbar style={styles.toolbar}>
+                <AppBar position={this.state.setFixed ? "fixed" : "static"} style={{ backgroundColor: Theme.primaryColor, marginBottom: 40 }}>
+                    
+                    {this.state.setFixed === false && <Toolbar style={styles.toolbar}>
                         <Grid container>
                             <Grid item xs={1} />
                             <Grid item xs={10} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -46,7 +77,8 @@ export default class AppHeader extends React.Component {
                             </Grid>
                             <Grid item xs={1} />
                         </Grid>
-                    </Toolbar>
+                    </Toolbar>}
+                    
                     <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 10 }}>
                         <div style={{ display: 'flex', flex: 1 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
@@ -65,6 +97,10 @@ export default class AppHeader extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                {
+                    this.state.setFixed && 
+                    <div style={{width: '1', height: 145}} />
+                }
             </div>
         );
     }
