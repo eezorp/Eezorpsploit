@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 
@@ -117,6 +115,7 @@ class ComputerCard extends React.Component {
                     <img
                         style={styles.cover}
                         src={this.props.img}
+                        alt={"Could not load"}
                     />
                 </Card>
             </div>

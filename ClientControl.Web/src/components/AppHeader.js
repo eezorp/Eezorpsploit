@@ -51,7 +51,7 @@ export default class AppHeader extends React.Component {
                 y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
             };
 
-            _this.setFixed(scroll.y > 50)
+            _this.setFixed(scroll.y > 57)
         }, 200);//ms
     }
 
@@ -72,7 +72,7 @@ export default class AppHeader extends React.Component {
                         <Grid container>
                             <Grid item xs={1} />
                             <Grid item xs={10} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                                <img src={logo} style={styles.logo} />
+                                <img src={logo} style={styles.logo} alt={"Could not load"}/>
                                 <Typography variant="headline" color="inherit">EezorpSploit v1.2</Typography>
                             </Grid>
                             <Grid item xs={1} />
@@ -85,7 +85,7 @@ export default class AppHeader extends React.Component {
                                 {
                                     items.map(
                                         i => {
-                                            return <Button style={i.isSelected === true ? selectedItemStyle : null} color="inherit" onClick={() => this.props.onNavigate(i.name)}>
+                                            return <Button key={i.name} style={i.isSelected === true ? selectedItemStyle : null} color="inherit" onClick={() => this.props.onNavigate(i.name)}>
                                                 {i.logo}
                                                 {this.props.isMobile !== true && <div style={{ marginRight: 5 }} />}
                                                 {this.props.isMobile !== true && <Typography variant="subheading" color="inherit">{i.name}</Typography>}

@@ -4,11 +4,9 @@ import Button from 'material-ui/Button';
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
 import Input from 'material-ui/Input';
-import Typography from 'material-ui/Typography';
 
 class ShellModal extends React.Component {
     constructor(props) {
@@ -47,11 +45,11 @@ class ShellModal extends React.Component {
                     </DialogContent>
 
                     <DialogActions>
-                        <Button onClick={() => {
+                        <Button key={1} onClick={() => {
                             this.props.onInsert(this.state.shellcode);
                             this.props.toggle();
                         }} color="primary" autoFocus>Insert</Button>
-                        <Button onClick={this.props.toggle} color="primary">Cancel</Button>
+                        <Button key={2} onClick={this.props.toggle} color="primary">Cancel</Button>
 
                     </DialogActions>
                 </Dialog>

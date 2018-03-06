@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ComputerCard, { } from '../components/ComputerCard/ComputerCard';
-import { Row, Col } from 'reactstrap';
 import ShellcodeCard from '../components/ShellcodeCard';
 import Grid from 'material-ui/Grid';
 import Loader from '../components/Loader';

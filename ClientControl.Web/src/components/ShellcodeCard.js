@@ -2,18 +2,11 @@
 
 import * as React from 'react';
 import Typography from 'material-ui/Typography/Typography';
-import Input from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import { FormControl, FormHelperText } from 'material-ui/Form';
-import Select from 'material-ui/Select';
-import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
 import Card, { CardContent } from 'material-ui/Card';
 
 //Icons
 import EditIcon from 'material-ui-icons/Edit';
-import StopIcon from 'material-ui-icons/Stop';
-
 import DeleteIcon from 'material-ui-icons/Delete';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 
@@ -87,6 +80,7 @@ class ShellcodeCard extends React.Component {
                     <img
                         style={styles.cover}
                         src={this.props.img}
+                        alt={"Could not load"}
                     />
                 </Card>
             </div>

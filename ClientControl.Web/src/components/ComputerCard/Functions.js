@@ -42,7 +42,7 @@ export default class Functions {
         var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
 
-        return diffMins > -1;
+        return (diffMins > -1) && diffDays === 0 && diffHrs === 0;
     }
 
     setShellCode(shellcode) {

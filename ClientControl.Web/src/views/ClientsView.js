@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import AppHeader from '../components/AppHeader';
 import Grid from 'material-ui/Grid';
 import ComputerCard from '../components/ComputerCard/ComputerCard';
 import Loader from '../components/Loader';
-import theme from '../styles/theme.json';
 import { getClients } from '../api/API';
 var interval_op = undefined;
 
