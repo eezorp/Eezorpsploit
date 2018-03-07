@@ -7,8 +7,11 @@ import Dialog, {
     DialogTitle,
 } from 'material-ui/Dialog';
 
-import RadioButton, {RadioGroup} from 'material-ui/Radio';
-import Input from 'material-ui/Input';
+import Input, { InputLabel } from 'material-ui/Input';
+import AppBar from 'material-ui/AppBar';
+import Tabs, { Tab } from 'material-ui/Tabs';
+import Typography from 'material-ui/Typography';
+
 
 const styles = {
     block: {
@@ -17,7 +20,20 @@ const styles = {
     radioButton: {
         marginBottom: 16,
     },
+    root: {
+        flexGrow: 1,
+        marginTop: 12,
+    },
 };
+
+function TabContainer(props) {
+    return (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
+    );
+}
+
 
 class ShellModal extends React.Component {
     constructor(props) {
@@ -40,7 +56,26 @@ class ShellModal extends React.Component {
         this.setState({ shellcode: this.props.shellcode });
     }
 
+    renderCustomView() {
+        return (<div>
+            <Typography variant="subheading">Custom shellcode</Typography>
+            <DialogContent>
+                <Input value={this.state.shellcode} onChange={ev => this.setShellCode(ev.target.value)} multiline fullWidth defaultValue="Paste ShellCode in here"></Input>
+            </DialogContent>
+        </div>
+        );
+    }
+
+    renderTemplateView() {
+        <div>
+        <Typography variant="subheading">Select from template</Typography>
+        <DialogContent>
+        </DialogContent>
+    </div>
+    }
+
     render() {
+        let value = 0;
         return (
             <div>
                 <Dialog
@@ -48,36 +83,33 @@ class ShellModal extends React.Component {
                     onClose={this.props.toggle}
                     fullWidth>
 
-                    <RadioGroup name="shipSpeed" defaultSelected="not_light">
-                        <RadioButton
-                            value="light"
-                            label="Simple"
-                            style={styles.radioButton}
-                        />
-                        <RadioButton
-                            value="not_light"
-                            label="Selected by default"
-                            style={styles.radioButton}
-                        /></RadioGroup>
+                    <div className={styles.root}>
+                        <AppBar position="static">
+                            <Tabs value={value} onChange={this.handleChange}>
+                                <Tab label="Item One" />
+                                <Tab label="Item Two" />
+                            </Tabs>
+                        </AppBar>
+                        {value === 0 &&
+                            <TabContainer>
+                                {this.renderCustomView()}
+                            </TabContainer>}
+                        {value === 1 && <TabContainer>Item Two</TabContainer>}
+                    </div>
 
-                        <DialogTitle id="alert-dialog-title">{"Insert ShellCode"}</DialogTitle>
 
-                        <DialogContent>
-                            <Input value={this.state.shellcode} onChange={ev => this.setShellCode(ev.target.value)} multiline fullWidth defaultValue="Paste ShellCode in here"></Input>
-                        </DialogContent>
+                    <DialogActions>
+                        <Button key={1} onClick={() => {
+                            this.props.onInsert(this.state.shellcode);
+                            this.props.toggle();
+                        }} color="primary" autoFocus>Insert</Button>
+                        <Button key={2} onClick={this.props.toggle} color="primary">Cancel</Button>
 
-                        <DialogActions>
-                            <Button key={1} onClick={() => {
-                                this.props.onInsert(this.state.shellcode);
-                                this.props.toggle();
-                            }} color="primary" autoFocus>Insert</Button>
-                            <Button key={2} onClick={this.props.toggle} color="primary">Cancel</Button>
-
-                        </DialogActions>
+                    </DialogActions>
                 </Dialog>
             </div>
-                );
-            }
-        }
-        
+        );
+    }
+}
+
 export default ShellModal;
