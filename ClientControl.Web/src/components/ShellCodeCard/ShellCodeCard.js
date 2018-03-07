@@ -39,7 +39,7 @@ const styles = {
     }
 };
 
-class ShellcodeCard extends React.Component {
+class ShellCodeCard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -53,7 +53,7 @@ class ShellcodeCard extends React.Component {
 
         return (
             <div style={{ margin: 10 }}>
-                <Card style={styles.card}>
+                <Card raised style={styles.card}>
                 <img
                         style={styles.cover}
                         src={this.props.img}
@@ -90,4 +90,4 @@ class ShellcodeCard extends React.Component {
     }
 }
 
-export default ShellcodeCard;
+export default ShellCodeCard;

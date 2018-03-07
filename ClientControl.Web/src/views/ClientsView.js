@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
-import ComputerCard from '../components/ComputerCard/ComputerCard';
-import Loader from '../components/Loader';
+import ClientCard from '../components/ClientCard/ClientCard';
+import Loader from '../components/Loader/Loader';
 import { getClients } from '../api/API';
 var interval_op = undefined;
 
@@ -56,7 +56,7 @@ class ClientView extends Component {
 
     render() {
         let clients = this.state.clients;
-        let cards = clients.map(c => <ComputerCard img={this.props.img} client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} />);
+        let cards = clients.map(c => <ClientCard img={this.props.img} client={c} onSet={this.onSetShellcode} onAbort={() => this.onAbort(c)} key={c.mac} />);
 
         return (
             <Grid container>

@@ -2,14 +2,11 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Theme from '../styles/theme.json';
+import Theme from '../../styles/theme.json';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 
-
-
-const logo = require('../resources/logo.svg');
-
+const logo = require('../../resources/logo.svg');
 const styles = {
     root: {
         flexGrow: 1,
@@ -24,19 +21,15 @@ const styles = {
         marginRight: 10
     }
 };
-
 const selectedItemStyle = {
     borderBottom: '3px solid #FFF'
-}
+};
 
 export default class AppHeader extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            setFixed: false
-        }
-
+        this.state = { setFixed: false }
         this.setFixed = this.setFixed.bind(this);
     }
 
@@ -73,7 +66,10 @@ export default class AppHeader extends React.Component {
                             <Grid item xs={1} />
                             <Grid item xs={10} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                                 <img src={logo} style={styles.logo} alt={"Could not load"}/>
-                                <Typography variant="headline" color="inherit">EezorpSploit v1.2</Typography>
+                                <div style={{display: 'flex'}}>
+                                <Typography variant="headline" color="inherit">EezorpSploit </Typography>
+                                <Typography style={{marginLeft: 5}} variant="subheading" color="inherit">v1.2</Typography>
+                                </div>
                             </Grid>
                             <Grid item xs={1} />
                         </Grid>
@@ -105,4 +101,3 @@ export default class AppHeader extends React.Component {
         );
     }
 }
-

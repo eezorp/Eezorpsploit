@@ -9,8 +9,8 @@ import StopIcon from 'material-ui-icons/Stop';
 import InfoIcon from 'material-ui-icons/InfoOutline';
 
 import Functions from './Functions';
-import ShellModal from '../ShellModal';
-import ComputerInfoCard from '../ComputerInfoCard';
+import AssignShellCodeModal from '../AssignShellCodeModal/AssignShellCodeModal';
+import ClientDetailsModal from '../ClientDetailsModal/ClientDetailsModal';
 
 
 const functions = new Functions();
@@ -43,7 +43,7 @@ const styles = {
     }
 };
 
-class ComputerCard extends React.Component {
+class ClientCard extends React.Component {
     constructor(props) {
         super(props);
 
@@ -66,10 +66,10 @@ class ComputerCard extends React.Component {
 
         return (
             <div style={{margin: 10}}>
-                <ShellModal shellcode={client.shellcode} isOpen={this.state.showModal} toggle={this.toggle} onInsert={this.setShellCode} />
-                <ComputerInfoCard isOpen={this.state.showInfoModal} toggle={this.toggleInfo} client={client} />
+                <AssignShellCodeModal shellcode={client.shellcode} isOpen={this.state.showModal} toggle={this.toggle} onInsert={this.setShellCode} />
+                <ClientDetailsModal isOpen={this.state.showInfoModal} toggle={this.toggleInfo} client={client} />
                 
-                <Card style={styles.card}>
+                <Card raised style={styles.card}>
                     <div style={styles.details}>
                         <CardContent style={styles.content}>
                             <Typography variant="headline">{client.username}</Typography>
@@ -123,4 +123,4 @@ class ComputerCard extends React.Component {
     }
 }
 
-export default ComputerCard;
+export default ClientCard;

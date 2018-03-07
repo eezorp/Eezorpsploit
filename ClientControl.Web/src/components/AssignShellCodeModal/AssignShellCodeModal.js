@@ -4,10 +4,9 @@ import Button from 'material-ui/Button';
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogTitle,
 } from 'material-ui/Dialog';
 
-import Input, { InputLabel } from 'material-ui/Input';
+import Input from 'material-ui/Input';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
@@ -35,7 +34,7 @@ function TabContainer(props) {
 }
 
 
-class ShellModal extends React.Component {
+class AssignShellCodeModal extends React.Component {
     constructor(props) {
         super(props);
 
@@ -67,11 +66,11 @@ class ShellModal extends React.Component {
     }
 
     renderTemplateView() {
-        <div>
-        <Typography variant="subheading">Select from template</Typography>
-        <DialogContent>
-        </DialogContent>
-    </div>
+        return (<div>
+            <Typography variant="subheading">Select from template</Typography>
+            <DialogContent>
+            </DialogContent>
+        </div>);
     }
 
     render() {
@@ -86,8 +85,8 @@ class ShellModal extends React.Component {
                     <div className={styles.root}>
                         <AppBar position="static">
                             <Tabs value={value} onChange={this.handleChange}>
-                                <Tab label="Item One" />
-                                <Tab label="Item Two" />
+                                <Tab label="Custom" />
+                                <Tab label="Shellcodes" />
                             </Tabs>
                         </AppBar>
                         {value === 0 &&
@@ -112,4 +111,4 @@ class ShellModal extends React.Component {
     }
 }
 
-export default ShellModal;
+export default AssignShellCodeModal;

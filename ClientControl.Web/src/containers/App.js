@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import AppHeader from '../components/AppHeader';
+import AppHeader from '../components/AppHeader/AppHeader';
 import Grid from 'material-ui/Grid';
 
 import ClientsView from '../views/ClientsView';
-import ShellcodeView from '../views/ShellcodeView';
+import ShellCodeView from '../views/ShellCodeView';
 
 import ComputerIcon from 'material-ui-icons/Computer'
 import CodeIcon from 'material-ui-icons/Code';
@@ -14,7 +14,7 @@ const computerimg = require('../resources/computer.svg');
 const codeimg = require('../resources/code.svg');
 
 const clientsView = <ClientsView img={computerimg} />;
-const shellcodeView = <ShellcodeView img={codeimg} />;
+const shellcodeView = <ShellCodeView img={codeimg} />;
 
 window.isMobile = function() {
   var check = false;
@@ -77,13 +77,13 @@ class App extends Component {
         <AppHeader isMobile={window.isMobile() === true} items={this.state.navItems} onNavigate={this.onNavigate} />
 
         <Grid container>
-          <Grid item xs={1} />
-          <Grid item xs={10}>
+          <Grid item xs={1} md={2} xl={3} />
+          <Grid item xs={10} md={8} xl={6} >
             <Grid container>
               {view}
             </Grid>
           </Grid>
-          <Grid item xs={1} />
+          <Grid item xs={1} md={2} xl={3} />
         </Grid>
       </div>
     );

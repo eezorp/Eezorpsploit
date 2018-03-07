@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ShellcodeCard from '../components/ShellcodeCard';
 import Grid from 'material-ui/Grid';
-import Loader from '../components/Loader';
-import AddShellcodeCard from '../components/AddShellcodeCard';
+import Loader from '../components/Loader/Loader';
+
+import ShellcodeCard from '../components/ShellCodeCard/ShellCodeCard';
+import AddShellCodeCard from '../components/ShellCodeCard/AddShellCodeCard';
 import { getShellCodes } from '../api/API';
 
 class ShellcodeView extends Component {
@@ -43,7 +44,7 @@ class ShellcodeView extends Component {
                         <Loader />
                         :
                         <Grid  container>
-                            <AddShellcodeCard />
+                            <AddShellCodeCard />
                             {
                                 this.state.shellcodes.map(s => {
                                     return <ShellcodeCard img={this.props.img} shellcode={s} onGet={this.getShellCode} />

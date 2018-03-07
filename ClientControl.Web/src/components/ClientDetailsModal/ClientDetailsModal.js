@@ -10,7 +10,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 
-class ComputerInfoCard extends React.Component {
+class ClientDetailsModal extends React.Component {
     render() {
         let client = this.props.client;
 
@@ -81,4 +81,4 @@ class ComputerInfoCard extends React.Component {
     }
 }
 
-export default ComputerInfoCard;
+export default ClientDetailsModal;
