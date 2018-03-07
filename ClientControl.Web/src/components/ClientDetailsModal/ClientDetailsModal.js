@@ -2,17 +2,19 @@
 
 import * as React from 'react';
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogTitle,
 } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import AppBar from 'material-ui/AppBar';
+const theme = require('../../styles/theme.json');
 
 class ClientDetailsModal extends React.Component {
     render() {
         let client = this.props.client;
+        let isMobile = window.isMobile() === true;
 
         return (
             <div>
@@ -22,10 +24,11 @@ class ClientDetailsModal extends React.Component {
                     onClose={this.props.toggle}
                     fullWidth
                 >
+                    <AppBar position="static" style={{ backgroundColor: theme.primaryColor }}>
+                        <Typography style={{padding: 12}} variant="subheading" color="inherit">Client Details</Typography>
+                    </AppBar>
 
-                    <DialogTitle id="alert-dialog-title">{client.username}</DialogTitle>
-                    <DialogContent>
-                        <Paper>
+                    <DialogContent style={ isMobile === true ? {padding: 0} : null} >
                             <Table>
                                 <TableBody>
 
@@ -69,7 +72,6 @@ class ClientDetailsModal extends React.Component {
                                     </TableRow>
                                 </TableBody>
                             </Table>
-                        </Paper>
                     </DialogContent>
 
                     <DialogActions>

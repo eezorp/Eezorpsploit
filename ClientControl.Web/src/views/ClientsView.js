@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import ClientCard from '../components/ClientCard/ClientCard';
 import Loader from '../components/Loader/Loader';
-import { getClients } from '../api/API';
+import { getClients, getShellCodes } from '../api/API';
 var interval_op = undefined;
 
 class ClientView extends Component {
@@ -11,7 +11,8 @@ class ClientView extends Component {
 
         this.state = {
             clients: [],
-            isLoading: false
+            isLoading: false,
+            shellcodes: []
         };
 
         this.onAbort = this.onAbort.bind(this);
@@ -24,14 +25,21 @@ class ClientView extends Component {
 
         getClients()
             .then(clients => {
-                _this.setState({ clients: clients, isLoading: false });
-            }).then(() => {
-                interval_op = setInterval(() => {
-                    getClients()
-                        .then(clients => {
-                            _this.setState({ clients: clients });
-                        })
-                }, 5000);
+                _this.setState({ clients: clients });
+            })
+            .then(() => {
+                getShellCodes()
+                    .then(codes => {
+                        _this.setState({ shellcodes: codes, isLoading: false });
+                    })
+                    .then(() => {
+                        interval_op = setInterval(() => {
+                            getClients()
+                                .then(clients => {
+                                    _this.setState({ clients: clients });
+                                })
+                        }, 5000);
+                    })
             })
     }
 

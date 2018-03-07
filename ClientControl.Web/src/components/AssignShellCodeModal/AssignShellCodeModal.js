@@ -10,7 +10,7 @@ import Input from 'material-ui/Input';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Typography from 'material-ui/Typography';
-
+const theme = require('../../styles/theme.json');
 
 const styles = {
     block: {
@@ -83,17 +83,14 @@ class AssignShellCodeModal extends React.Component {
                     fullWidth>
 
                     <div className={styles.root}>
-                        <AppBar position="static">
-                            <Tabs value={value} onChange={this.handleChange}>
-                                <Tab label="Custom" />
+                        <AppBar position="static" style={{ backgroundColor: theme.primaryColor }}>
+                            <Tabs value={value} indicatorColor="#FFF" onChange={this.handleChange}>
                                 <Tab label="Shellcodes" />
+                                <Tab label="Custom" />
                             </Tabs>
                         </AppBar>
-                        {value === 0 &&
-                            <TabContainer>
-                                {this.renderCustomView()}
-                            </TabContainer>}
-                        {value === 1 && <TabContainer>Item Two</TabContainer>}
+                        {value === 0 && <TabContainer></TabContainer>}
+                        {value === 1 && <TabContainer>{this.renderCustomView()}</TabContainer>}
                     </div>
 
 

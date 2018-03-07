@@ -44,24 +44,19 @@ export default class AppHeader extends React.Component {
                 y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
             };
 
-            _this.setFixed(scroll.y > 57)
-        }, 200);//ms
+            _this.setFixed(scroll.y > 59)
+        }, 30);//ms
     }
 
-    setFixed(val) {
-        if (val !== this.state.setFixed)
-            this.setState({
-                setFixed: val
-            });
-    }
-
+    setFixed = (val) => (val !== this.state.setFixed) ? this.setState({ setFixed: val }) : { };
     render = () => {
         let items = this.props.items;
         return (
             <div style={styles.root}>
                 <AppBar position={this.state.setFixed ? "fixed" : "static"} style={{ backgroundColor: Theme.primaryColor, marginBottom: 40, top: 0}}>
                     
-                    {this.state.setFixed === false && <Toolbar style={styles.toolbar}>
+                    {this.state.setFixed === false && 
+                    <Toolbar style={styles.toolbar}>
                         <Grid container>
                             <Grid item xs={1} />
                             <Grid item xs={10} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -75,7 +70,7 @@ export default class AppHeader extends React.Component {
                         </Grid>
                     </Toolbar>}
                     
-                    <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 20 }}>
+                    <Toolbar style={{ alignItems: 'flex-end', minHeight: 0, marginTop: 10 }}>
                         <div style={{ display: 'flex', flex: 1 }}>
                             <div style={{ display: 'flex', flexDirection: 'row', flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
                                 {
@@ -95,7 +90,7 @@ export default class AppHeader extends React.Component {
                 </AppBar>
                 {
                     this.state.setFixed && 
-                    <div style={{width: '1', height: 163}} />
+                    <div style={{width: '1', height: 153}} />
                 }
             </div>
         );
