@@ -1,5 +1,7 @@
-const clients_url = "http://10.188.4.40:8000/clients";
-const shellcode_url = "http://10.188.4.40:8000/shellcode";
+//const base = "localhost";
+const base = "192.168.178.14";
+const clients_url = "http://"+base+":8000/clients";
+const shellcode_url = "http://"+base+":8000/shellcode";
 
 
 export function getShellCodes() {
